@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>A Package Object represents information about the package as it is defined in the developer&apos;s Salesforce Organization. A record is created or updated each time a new version of the package is uploaded to AppExchange.</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Is_Extension__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Denotes if this package is an extension of another package. Helps determine hierarchy in error handling and management situations.</inlineHelpText>
+        <label>Is Extension</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Latest_Version_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Latest Version Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Latest_Version_Install_Link__c</fullName>
+        <externalId>false</externalId>
+        <label>Latest Version Install Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Latest_Version_Install_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;https://login.salesforce.com/?startURL=/packaging/installPackage.apexp?p0=&quot;&amp; Latest_Version_Id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Latest Version Install URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Namespace__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The namespace this package is registered under. (Help sort inbound error messages to the proper package)</inlineHelpText>
+        <label>Namespace</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Versions__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Versions</label>
+        <summaryForeignKey>sfLma__Package_Version__c.sfLma__Package__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Package_Interstitial_Content__c</fullName>
+        <externalId>false</externalId>
+        <label>Package Interstitial Content</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sandbox_Install_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;https://test.salesforce.com/?startURL=/packaging/installPackage.apexp?p0=&quot;&amp; Latest_Version_Id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sandbox Install Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Developer_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Developer Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Developer_Org_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Developer Org ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Help__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>(HYPERLINK(&quot;http://www.salesforce.com/docs/en/lma/index_CSH.htm#lma_package_detail.htm&quot;, &quot;Help for Packages&quot;)) &amp; &quot; &quot; &amp; (IMAGE(&quot;/img/btn_help.gif&quot;, &quot;Help&quot;))</formula>
+        <label>Help</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Latest_Version__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Latest Version</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Lead_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The User in the LMO who is responsible for managing the leads generated for this package. They will become the owner of any lead generated.</description>
+        <externalId>false</externalId>
+        <label>Lead Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N30000001JvRJEA0</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>sfLma__Package_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Package ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Release_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Release Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <label>Package</label>
+    <listViews>
+        <fullName>sfLma__All</fullName>
+        <columns>NAME</columns>
+        <columns>sfLma__Developer_Org_ID__c</columns>
+        <columns>sfLma__Latest_Version__c</columns>
+        <columns>sfLma__Release_Date__c</columns>
+        <columns>Number_of_Versions__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Package Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Packages</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>sfLma__Latest_Version__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>sfLma__Lead_Manager__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>sfLma__Developer_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>sfLma__Release_Date__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <webLinks>
+        <fullName>Edit_Message</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Edit Message</masterLabel>
+        <openType>replace</openType>
+        <page>packageMessageEdit</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

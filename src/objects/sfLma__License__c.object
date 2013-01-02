@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>An object that replicates information from the license object in the subscriber&apos;s Salesforce organization. Records are created each time a subscriber successfully installs a package.</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>DOT_Install__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( CONTAINS( sfLma__Lead__r.LastName , &quot;Inactive&quot;) , &quot;Yes&quot;, &quot;No&quot;)</formula>
+        <inlineHelpText>Will be Yes if this was installed by the DOT user</inlineHelpText>
+        <label>DOT Install</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Days_Since_Last_Install__c</fullName>
+        <externalId>false</externalId>
+        <formula>today() - Most_Recent_Install_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Days since</inlineHelpText>
+        <label>Days Since Last Install</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Global_Package_Version_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>sfLma__Package_Version__r.sfLma__Version_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Package Version ID from Package Version record (used for binding to global or BT tables along with subscriber org)</inlineHelpText>
+        <label>Global Package Version ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Login_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>sfLma__Account__r.Last_Login_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Last Login Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Months_Since_Last_Install__c</fullName>
+        <externalId>false</externalId>
+        <formula>(today() -  Most_Recent_Install_Date__c )/30.4</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Months Since Last Install</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Most_Recent_Install_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Only valid for recent installs post 10/14/09</inlineHelpText>
+        <label>Most Recent Install Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Org_BT_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;https://na1.salesforce.com/admin/sysAdminHome.jsp?search=&quot;&amp;  sfLma__Subscriber_Org_ID__c  &amp;&quot;&amp;search=Search&quot;,   sfLma__Subscriber_Org_ID__c  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Link to BT Search page</inlineHelpText>
+        <label>Org BT Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Organization_Edition__c</fullName>
+        <externalId>false</externalId>
+        <label>Organization Edition</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Enterprise Edition</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Developer Edition</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sandbox</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Package_Upgraded__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Most_Recent_Install_Date__c &gt; sfLma__Install_Date__c ,&quot;Yes&quot;, if(sfLma__Package_Version__r.Name = &quot;Contacts &amp; Organizations 1.66&quot;,&quot;Yes&quot;,&quot;No&quot; ))</formula>
+        <inlineHelpText>Yes/No shows if an org upgraded</inlineHelpText>
+        <label>Package Upgraded</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Package_Version_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>sfLma__Package_Version__r.Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Package Version Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Package_Version_Name_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>sfLma__Package_Version__r.Name</formula>
+        <label>Package Version Name Formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Previous_Version_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Previous Version Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>bogus_boolean__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>bogus boolean</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>sfLma__Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This field displays the Account associated with the license after the partner converts the Lead to an account as part of Lead Conversion process</description>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>R00N30000001JvRMEA0</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>sfLma__Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This field displays the Contact associated with the license after the partner converts the Lead to a contact as part of Lead Conversion process</description>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipName>R00N30000001JvR6EAK</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>sfLma__Expiration_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A formula field which displays the Expiration Date or “Does not expire&quot; based on the value in the Expiration field.</description>
+        <externalId>false</externalId>
+        <formula>if(  sfLma__Expiration__c &lt;&gt; date(1970,1,1),text( sfLma__Expiration__c ),&quot;Does not expire&quot;)</formula>
+        <label>Expiration Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Expiration__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Expiration Date of the License, 1/1/1970 represents a perpetual license</description>
+        <externalId>false</externalId>
+        <label>Expiration</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>sfLma__Help__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>(HYPERLINK(&quot;http://www.salesforce.com/docs/en/lma/index_CSH.htm#lma_license_detail.htm&quot;, &quot; Help for License&quot;)) &amp; &quot; &quot; &amp; (IMAGE(&quot;/img/btn_help.gif&quot;, &quot;Help&quot;))</formula>
+        <label>Help</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Install_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Date this Package Version was initially installed by the developer. (Does not get updated as part of upgrades.)</description>
+        <externalId>false</externalId>
+        <label>Install Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>sfLma__Lead__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lead generated from this install. This field becomes blank once the lead is converted to an account / contact in the lead conversion process</description>
+        <externalId>false</externalId>
+        <label>Lead</label>
+        <referenceTo>Lead</referenceTo>
+        <relationshipName>R00N30000001JvRAEA0</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>sfLma__License_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>$RecordType.Name</formula>
+        <label>License Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__License_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field indicates the type of license record. For example, if the license record is &quot;Read-Only&quot;, this license record cannot be modified.</description>
+        <externalId>false</externalId>
+        <label>License Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Licensed_Seats__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A text field which displays the number of Licensed Seats or “Site License” based on the numeric field</description>
+        <externalId>false</externalId>
+        <formula>IF( sfLma__Seats__c &gt;=0,  TEXT(sfLma__Seats__c ), &quot;Site License&quot;)</formula>
+        <label>Licensed Seats</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Package_License_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of package license for uninstall tracking</description>
+        <externalId>false</externalId>
+        <label>Package License ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Package_Version__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Package Version</label>
+        <referenceTo>sfLma__Package_Version__c</referenceTo>
+        <relationshipName>R00N30000001JvQxEAK</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>sfLma__Proxy_User__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Proxy user in subscriber org</description>
+        <externalId>false</externalId>
+        <label>Proxy User</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Seats__c</fullName>
+        <deprecated>false</deprecated>
+        <description>number of seats covered by license</description>
+        <externalId>false</externalId>
+        <label>Seats</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the Status of the Package License in the Subscriber Org</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Trial</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Suspended</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Uninstalled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>sfLma__Subscriber_Org_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is the ID of the Subscriber organization</description>
+        <externalId>false</externalId>
+        <label>Subscriber Org ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sfLma__Used_Licenses__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Used Licenses</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>License</label>
+    <listViews>
+        <fullName>Matching_Gifts_Licenses</fullName>
+        <columns>NAME</columns>
+        <columns>sfLma__Install_Date__c</columns>
+        <columns>sfLma__Account__c</columns>
+        <columns>LAST_ACTIVITY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Package_Version_Name_Formula__c</field>
+            <operation>startsWith</operation>
+            <value>Matching Gifts</value>
+        </filters>
+        <label>Matching Gifts Licenses</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Today_s_Signups</fullName>
+        <columns>NAME</columns>
+        <columns>sfLma__Account__c</columns>
+        <columns>sfLma__Expiration__c</columns>
+        <columns>DOT_Install__c</columns>
+        <columns>sfLma__Lead__c</columns>
+        <columns>sfLma__Seats__c</columns>
+        <columns>sfLma__Subscriber_Org_ID__c</columns>
+        <columns>sfLma__Package_Version__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>Today&apos;s Signups</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Uninstalled_Packages</fullName>
+        <columns>NAME</columns>
+        <columns>DOT_Install__c</columns>
+        <columns>sfLma__Package_Version__c</columns>
+        <columns>sfLma__Install_Date__c</columns>
+        <columns>sfLma__Lead__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>sfLma__License__c.sfLma__Uninstalled</value>
+        </filters>
+        <label>Uninstalled Packages</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Upgraded_Licenses</fullName>
+        <columns>NAME</columns>
+        <columns>sfLma__Install_Date__c</columns>
+        <columns>Most_Recent_Install_Date__c</columns>
+        <columns>Months_Since_Last_Install__c</columns>
+        <columns>sfLma__Package_Version__c</columns>
+        <columns>Previous_Version_Number__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Package_Upgraded__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </filters>
+        <label>Upgraded Licenses</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>npsp_demo_licenses</fullName>
+        <columns>NAME</columns>
+        <columns>sfLma__Proxy_User__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>sfLma__Subscriber_Org_ID__c</field>
+            <operation>equals</operation>
+            <value>00D80000000bzIN</value>
+        </filters>
+        <label>npsp demo licenses</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>sfLma__All</fullName>
+        <columns>NAME</columns>
+        <columns>sfLma__Lead__c</columns>
+        <columns>sfLma__Package_Version__c</columns>
+        <columns>sfLma__Licensed_Seats__c</columns>
+        <columns>sfLma__Install_Date__c</columns>
+        <columns>sfLma__Expiration_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>L-{00000}</displayFormat>
+        <label>License Name</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Licenses</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>sfLma__Active</fullName>
+        <active>true</active>
+        <label>Active</label>
+        <picklistValues>
+            <picklist>Organization_Edition__c</picklist>
+            <values>
+                <fullName>Developer Edition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sandbox</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sfLma__Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspended</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uninstalled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>sfLma__Expired</fullName>
+        <active>true</active>
+        <label>Expired</label>
+        <picklistValues>
+            <picklist>Organization_Edition__c</picklist>
+            <values>
+                <fullName>Developer Edition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sandbox</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sfLma__Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspended</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uninstalled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>sfLma__Suspended</fullName>
+        <active>true</active>
+        <label>Suspended</label>
+        <picklistValues>
+            <picklist>Organization_Edition__c</picklist>
+            <values>
+                <fullName>Developer Edition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sandbox</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sfLma__Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspended</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uninstalled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>sfLma__Trial</fullName>
+        <active>true</active>
+        <label>Trial</label>
+        <picklistValues>
+            <picklist>Organization_Edition__c</picklist>
+            <values>
+                <fullName>Developer Edition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sandbox</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sfLma__Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspended</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uninstalled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>sfLma__Uninstalled</fullName>
+        <active>true</active>
+        <label>Uninstalled</label>
+        <picklistValues>
+            <picklist>Organization_Edition__c</picklist>
+            <values>
+                <fullName>Developer Edition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enterprise Edition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sandbox</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>sfLma__Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suspended</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uninstalled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>sfLma__Lead__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>sfLma__Package_Version__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>sfLma__Licensed_Seats__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>sfLma__Install_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>sfLma__Expiration_Date__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>sfLma__Lead__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>sfLma__Expiration__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>sfLma__Seats__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <webLinks>
+        <fullName>sfLma__Modify_License</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>url</linkType>
+        <masterLabel>Modify License</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/sfLma__ModifyLicense?id={!sfLma__License__c.Id}</url>
+    </webLinks>
+</CustomObject>
