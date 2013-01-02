@@ -1,0 +1,72 @@
+<apex:page standardController="sfLma__Package__c" showHeader="false" cache="false">
+<html>
+<body>
+
+<style type="text/css">
+
+body {
+    font-family:helvetica, arial, san-serif;
+    font-size: 14pt;
+}
+
+.info, .success, .warning, .error, .validation {
+border-bottom: 1px solid;
+margin: 0px 0px;
+padding: 15px 10px 15px 50px;
+background-repeat: no-repeat;
+background-position: 10px center;
+}
+.info {
+color: #00529B;
+background-color: #BDE5F8;
+background-image: url('http://www.lonewolfdesigns.co.uk/images/icons/info.png');
+}
+.success {
+color: #4F8A10;
+background-color: #DFF2BF;
+background-image:url('http://www.lonewolfdesigns.co.uk/images/icons/success.png');
+}
+.warning {
+color: #FFFFFF;
+background-color: #00A8E5;
+background-image: url('http://gokubi.com/images/warning.png') ;
+}
+
+.error {
+color: #D8000C;
+background-color: #FFBABA;
+background-image: url('http://www.lonewolfdesigns.co.uk/images/icons/error.png');
+}
+#banner {
+text-align:center;
+}
+
+#box {
+    width:653px;
+    margin:5px auto;    
+    text-align:left;
+    padding:0px;
+    border:1px solid #00A8E5;
+}
+#message {
+    margin: 0px;
+    padding: 20px;
+    font-size: 10pt;
+}
+#message h2 {
+    font-size: 12pt;
+}
+</style>
+<div id="banner">
+<apex:image alt="NPSP Banner" value="{!URLFOR($Resource.NPSP_Images, 'npsp_header.png')}"  /></div>
+<div id="box">
+<div class="warning">{!sfLma__Package__c.Name} - {!sfLma__Package__c.sfLma__Latest_Version__c}</div>
+<div id="message">
+<p>
+<apex:outputText escape="false" value="{!sfLma__Package__c.Package_Interstitial_Content__c}"/></p>
+<h2><apex:outputLink value="{!sfLma__Package__c.Latest_Version_Install_URL__c}" id="theLink">Continue and install the package...</apex:outputLink></h2> 
+<h4><apex:outputLink value="{!sfLma__Package__c.Sandbox_Install_Link__c}" id="sandboxLink">Continue and install the package to a sandbox...</apex:outputLink></h4> 
+</div></div>
+</body>
+</html>
+</apex:page>

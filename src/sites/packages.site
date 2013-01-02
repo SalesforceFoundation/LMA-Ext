@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomSite xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowHomePage>false</allowHomePage>
+    <allowStandardAnswersPages>false</allowStandardAnswersPages>
+    <allowStandardIdeasPages>false</allowStandardIdeasPages>
+    <allowStandardLookups>false</allowStandardLookups>
+    <allowStandardSearch>false</allowStandardSearch>
+    <authorizationRequiredPage>Unauthorized</authorizationRequiredPage>
+    <bandwidthExceededPage>BandwidthExceeded</bandwidthExceededPage>
+    <description>Used for NPSP package install links.
+http://foundation.force.com/packages/affiliations
+http://foundation.force.com/packages/relationships
+http://foundation.force.com/packages/contactsandorganizations
+http://foundation.force.com/packages/households
+http://foundation.force.com/packages/recurringdonations</description>
+    <fileNotFoundPage>FileNotFound</fileNotFoundPage>
+    <genericErrorPage>Exception</genericErrorPage>
+    <inMaintenancePage>InMaintenance</inMaintenancePage>
+    <inactiveIndexPage>InMaintenance</inactiveIndexPage>
+    <indexPage>home</indexPage>
+    <masterLabel>NPSP packages</masterLabel>
+    <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
+    <siteAdmin>steve.andersen@salesforcefoundation.org</siteAdmin>
+    <siteTemplate>SiteTemplate</siteTemplate>
+    <subdomain>foundation</subdomain>
+    <urlPathPrefix>packages</urlPathPrefix>
+</CustomSite>
